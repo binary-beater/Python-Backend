@@ -13,8 +13,16 @@ async def async_function(test_param: str) -> str:
 
 
 async def main():
-    sync_result = sync_function("Hello")
-    print(sync_result)
+    # sync_result = sync_function("Hello")
+    # print(sync_result)
+
+    loop = asyncio.get_running_loop()
+    future = loop.create_future() # a promise-like object that will eventually hold a result or an exception
+    print(f"Empty Future: {future}")
+
+    future.set_result("Future Result: Test")
+    future_result = await future
+    print(future_result)
 
 if __name__ == "__main__":
     asyncio.run(main())
