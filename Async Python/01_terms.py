@@ -16,13 +16,17 @@ async def main():
     # sync_result = sync_function("Hello")
     # print(sync_result)
 
-    loop = asyncio.get_running_loop()
-    future = loop.create_future() # a promise-like object that will eventually hold a result or an exception
-    print(f"Empty Future: {future}")
+    # coroutine_obj = async_function("Test")
+    # print(coroutine_obj)
 
-    future.set_result("Future Result: Test")
-    future_result = await future
-    print(future_result)
+    # couroutine_result = await coroutine_obj
+    # print(couroutine_result)
+
+    task = asyncio.create_task(async_function("Test"))
+    print(task)
+    
+    task_result = await task
+    print(task_result)
 
 if __name__ == "__main__":
     asyncio.run(main())
